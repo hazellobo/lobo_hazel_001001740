@@ -10,6 +10,9 @@ import Model.Patient;
 import Model.PatientDirectory;
 import Model.SystemModel;
 import CommonUtility.Validator;
+import Model.Encounter;
+import Model.VitalSign;
+import java.time.LocalDateTime;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -61,18 +64,18 @@ public class ManagePatients extends javax.swing.JPanel {
         });
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel9.setText("Modify Patient");
+        jLabel9.setText("Manage Patient Details");
 
         grp1Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Name", "Age", "Patient Id", "Address"
+                "Patient Id", "Name", "Age", "Address", "Temperature", "Blood Pressure", "Pulse"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, true, false, true
+                false, true, true, true, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -112,9 +115,9 @@ public class ManagePatients extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(161, 161, 161)
                         .addComponent(jLabel9)))
-                .addContainerGap(227, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(71, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -135,9 +138,9 @@ public class ManagePatients extends javax.swing.JPanel {
                     .addComponent(lblTemperature1)
                     .addComponent(patientIdBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(58, 58, 58)
+                .addGap(47, 47, 47)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
+                .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -161,13 +164,17 @@ public class ManagePatients extends javax.swing.JPanel {
          if(patient != null){
              DefaultTableModel dtm1 = (DefaultTableModel) grp1Table.getModel();
              dtm1.setRowCount(0);
-             Object row [] = new Object[4];
-             row[0] = patient.getName();
-             row[1] = patient.getAge();
-             row[2] = patient.getPatientId();
+             Object row [] = new Object[7];
+             row[0] = patient.getPatientId();
+             row[1] = patient.getName();
+             row[2] = patient.getAge();
              String patientHome = "House:"+patient.getHouse().getHouseNumber()+",Community: "+patient.getHouse().getCommunity().getName();
              JComboBox<String> comComboBox = new javax.swing.JComboBox<>();
              row[3] = patientHome;
+             row[4]=patient.getHistory().getLastEncounter().getVitalSign().getTemperature();
+             row[5]=patient.getHistory().getLastEncounter().getVitalSign().getBloodPressure();
+             row[6]=patient.getHistory().getLastEncounter().getVitalSign().getPulse();
+            
              for(Community comm: sys.getCity().getCommunities()){
                 for(House h: comm.getHouses()){
                     String home = "House:"+h.getHouseNumber()+",Community: "+comm.getName();                    
@@ -181,15 +188,19 @@ public class ManagePatients extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:(
+         if(!grp1Table.isRowSelected(0)){
+            JOptionPane.showMessageDialog(this, "Please select record to update","Error", JOptionPane.ERROR_MESSAGE);
+            return;
+         }
         PatientDirectory patientList = sys.getPatientDirectory();
         Patient p = null;
         Validator util = new Validator();
         DefaultTableModel dtm1 = (DefaultTableModel) grp1Table.getModel();
-        String name = (String)dtm1.getValueAt(0, 0);
-        String age =(String)dtm1.getValueAt(0, 1);
-        System.out.println("AGE IS: " +age);
-        String patientId = (String)dtm1.getValueAt(0, 2);
+        String patientId = (String)dtm1.getValueAt(0, 0);
+        String name =(String) dtm1.getValueAt(0, 1);
+        String age = (String) dtm1.getValueAt(0, 2);
+        
         p = patientList.getPatient(patientId);
         String homeSelected = (String)dtm1.getValueAt(0, 3);
         
@@ -197,18 +208,19 @@ public class ManagePatients extends javax.swing.JPanel {
         if(!(util.isNotNullAndEmpty(name) && util.isAlphabetic(name)))
                 message = "Please enter a valid name."; 
         
-        if(!(util.isNotNullAndEmpty(String.valueOf(age)) && util.isNumeric(String.valueOf(age))))
-            message = "Please enter a valid age.";       
+        if(!(util.isNotNullAndEmpty(age) && util.isNumeric(age)))
+            message = "Please enter a valid age.";   
 
         if(!"".equals(message)){
                JOptionPane.showMessageDialog(this, message,"Error", JOptionPane.ERROR_MESSAGE);
                 return;
         }
                 
-        p.setAge(Integer.parseInt(age));
+        p.setAge(age);
         p.setName(name);
         homeSelected = homeSelected.substring(6,7);
         p.setHouse(sys.getCity().getHouse(homeSelected));
+        
         JOptionPane.showMessageDialog(null, "Patient Successfully Updated");
         dtm1.setRowCount(0);
         patientIdBox.setText("");
@@ -216,6 +228,10 @@ public class ManagePatients extends javax.swing.JPanel {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+         if(!grp1Table.isRowSelected(0)){
+            JOptionPane.showMessageDialog(this, "Please select record to delete","Error", JOptionPane.ERROR_MESSAGE);
+            return;
+         }
         DefaultTableModel dtm1 = (DefaultTableModel) grp1Table.getModel();
         String patientId = (String)dtm1.getValueAt(0, 2);
         Patient p =  sys.getPatientDirectory().getPatient(patientId);
