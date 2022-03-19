@@ -68,7 +68,7 @@ public class ViewBPResults extends javax.swing.JPanel {
         jLabel1.setText("Select Community:");
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel9.setText("Blood Pressure Results");
+        jLabel9.setText("Abnormal Blood Pressure");
 
         resultPanel.setBackground(new java.awt.Color(0, 153, 153));
 
@@ -77,11 +77,11 @@ public class ViewBPResults extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Name", "Age", "House", "Patient Id", "BP Recorded"
+                "Patient Id", "Name", "Age", "House", "BP Recorded"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -97,11 +97,11 @@ public class ViewBPResults extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Name", "Age", "House", "Patient Id", "BP Recorded"
+                "Patient Id", "Name", "Age", "House", "BP Recorded"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, true, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -115,11 +115,11 @@ public class ViewBPResults extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Name", "Age", "House Id", "Patient Id", "BP Recorded"
+                "Patient Id", "Name", "Age", "House", "BP Recorded"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, true, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -204,7 +204,7 @@ public class ViewBPResults extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(288, 288, 288)
                         .addComponent(jLabel9)))
-                .addContainerGap(154, Short.MAX_VALUE))
+                .addContainerGap(192, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -257,7 +257,7 @@ public class ViewBPResults extends javax.swing.JPanel {
         for(Patient patient: sys.getPatientDirectory().getList()){
             int groupNum = 0;
             if(patient.getHouse().getCommunity().getName().equalsIgnoreCase(communitySelected)){
-                int age = patient.getAge();
+                int age = Integer.parseInt(patient.getAge());
                 if(0 < age && age < 18 ){
                     table = grp1Table;    groupNum = 1;
                 }else if(17 < age && age < 40 ){
@@ -269,10 +269,11 @@ public class ViewBPResults extends javax.swing.JPanel {
                 }
                 dtm = (DefaultTableModel) table.getModel();        
 
-                row[0] = patient.getName();
-                row[1] = patient.getAge();
-                row[2] = patient.getHouse().getHouseNumber();
-                row[3] = patient.getPatientId();
+                row[0] = patient.getPatientId();
+                row[1] = patient.getName();
+                row[2] = patient.getAge();
+                row[3] = patient.getHouse().getHouseNumber();
+
                 
                 Encounter visit = patient.getHistory().getLastEncounter();
                 if(visit != null){
