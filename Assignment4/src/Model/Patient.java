@@ -17,7 +17,7 @@ public class Patient extends Person{
         this.history = new EncounterHistory();
     }
     
-    public Patient(String patientId, String name, int age, House house) {
+    public Patient(String patientId, String name, String age, House house) {
         super(name, age, house);
         this.patientId = patientId;
         this. history = new EncounterHistory();

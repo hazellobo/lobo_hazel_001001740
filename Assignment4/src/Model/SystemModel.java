@@ -66,15 +66,15 @@ public class SystemModel {
         
         city.addCommunity(community1, community2);
         
-        Patient p1 = new Patient("100","Sanjay", 25, home4);
-        Patient p2 = new Patient("102","Ranvijay", 45, home1);
-        Patient p3 = new Patient("103","Gandhi", 70, home2);
-        Patient p4 = new Patient("104","Rugvedh", 50, home3);
-        Patient p5 = new Patient("105","Abhay", 25, home4);
-        Patient p6 = new Patient("106","Bryan", 60, home1);
-        Patient p7 = new Patient("107","Senorita", 12, home4);
-        Patient p8 = new Patient("108","Darius", 39, home2);
-        Patient p9 = new Patient("109","Parvati", 12, home3);
+        Patient p1 = new Patient("100","Sanjay", "25", home4);
+        Patient p2 = new Patient("102","Ranvijay", "45", home1);
+        Patient p3 = new Patient("103","Gandhi", "70", home2);
+        Patient p4 = new Patient("104","Rugvedh", "50", home3);
+        Patient p5 = new Patient("105","Abhay", "25", home4);
+        Patient p6 = new Patient("106","Bryan", "60", home1);
+        Patient p7 = new Patient("107","Senorita", "12", home4);
+        Patient p8 = new Patient("108","Darius", "39", home2);
+        Patient p9 = new Patient("109","Parvati", "12", home3);
 
         patientDirectory.addPatient(p1, p2, p3, p4, p5, p6, p7, p8, p9); 
  

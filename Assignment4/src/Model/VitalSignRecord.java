@@ -18,11 +18,11 @@ public class VitalSignRecord {
         vitalSignRecord = new ArrayList<>();
     }
     
-    public ArrayList<VitalSign> getvitalSignRecord() {
+    public ArrayList<VitalSign> getVitalSignRecord() {
         return vitalSignRecord;
     }
 
-    public void setvitalSignRecord(ArrayList<VitalSign> vitalSignRecord) {
+    public void setVitalSignRecord(ArrayList<VitalSign> vitalSignRecord) {
         this.vitalSignRecord = vitalSignRecord;
     }
     
