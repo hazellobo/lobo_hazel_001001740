@@ -44,7 +44,6 @@ public class StartMenu extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
-        btnCreate1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,14 +61,12 @@ public class StartMenu extends javax.swing.JFrame {
             RightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(RightPanelLayout.createSequentialGroup()
                 .addGap(210, 210, 210)
-                .addGroup(RightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(109, 109, 109))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RightPanelLayout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(165, 165, 165))))
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(109, 109, 109))
+            .addGroup(RightPanelLayout.createSequentialGroup()
+                .addGap(257, 257, 257)
+                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         RightPanelLayout.setVerticalGroup(
             RightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,7 +99,7 @@ public class StartMenu extends javax.swing.JFrame {
         });
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton1.setText("View BP Results");
+        jButton1.setText("Abnormal BP");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -114,18 +111,10 @@ public class StartMenu extends javax.swing.JFrame {
         jLabel1.setText("MENU");
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton3.setText("Modify Patient");
+        jButton3.setText("Manage Patient Vitals");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
-            }
-        });
-
-        btnCreate1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnCreate1.setText("Modify Patient Vitals");
-        btnCreate1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCreate1ActionPerformed(evt);
             }
         });
 
@@ -136,21 +125,21 @@ public class StartMenu extends javax.swing.JFrame {
             .addGroup(LeftPanelLayout.createSequentialGroup()
                 .addGroup(LeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(LeftPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(LeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(LeftPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(LeftPanelLayout.createSequentialGroup()
-                        .addGap(101, 101, 101)
-                        .addComponent(jLabel1))
-                    .addGroup(LeftPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnCreate1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(LeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(LeftPanelLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(LeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
+                                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(LeftPanelLayout.createSequentialGroup()
+                                .addGap(101, 101, 101)
+                                .addComponent(jLabel1)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LeftPanelLayout.createSequentialGroup()
+                        .addGap(0, 10, Short.MAX_VALUE)
+                        .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         LeftPanelLayout.setVerticalGroup(
             LeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,15 +148,13 @@ public class StartMenu extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(31, 31, 31)
                 .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
-                .addComponent(btnCreate1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addContainerGap(140, Short.MAX_VALUE))
         );
 
         SplitPane.setLeftComponent(LeftPanel);
@@ -209,12 +196,6 @@ public class StartMenu extends javax.swing.JFrame {
         ManagePatients man = new ManagePatients(sys);
         SplitPane.setRightComponent(man);
     }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void btnCreate1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreate1ActionPerformed
-        // TODO add your handling code here:
-        ManageVitals mv = new ManageVitals(sys);
-        SplitPane.setRightComponent(mv);
-    }//GEN-LAST:event_btnCreate1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -258,7 +239,6 @@ public class StartMenu extends javax.swing.JFrame {
     private javax.swing.JPanel RightPanel;
     private javax.swing.JSplitPane SplitPane;
     private javax.swing.JButton btnCreate;
-    private javax.swing.JButton btnCreate1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
