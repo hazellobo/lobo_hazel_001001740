@@ -75,9 +75,8 @@ public class AddEncounter extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(269, 269, 269)
+                .addContainerGap(313, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblCreateTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblTemperature)
@@ -92,15 +91,17 @@ public class AddEncounter extends javax.swing.JPanel {
                                 .addComponent(txtTemperature, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(patientIdBox, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(txtPulse, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(101, 101, 101)))
-                .addContainerGap(281, Short.MAX_VALUE))
+                        .addGap(365, 365, 365))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lblCreateTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(252, 252, 252))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(59, 59, 59)
+                .addGap(61, 61, 61)
                 .addComponent(lblCreateTitle)
-                .addGap(36, 36, 36)
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(patientIdBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTemperature1))
@@ -128,15 +129,20 @@ public class AddEncounter extends javax.swing.JPanel {
         Validator util= new Validator();
         
         //validating fields before performing any action 
+       Patient p = sys.getPatientDirectory().getPatient(patientIdBox.getText());
+        if(p==null){
+          JOptionPane.showMessageDialog(this, "Patient Id does not exist","Error", JOptionPane.ERROR_MESSAGE);
+          return;
+        }
         if(!util.isNotNullAndEmpty(txtBloodPressure.getText()) || !util.isNotNullAndEmpty(txtPulse.getText())||
        !util.isNotNullAndEmpty(txtTemperature.getText())){
-          JOptionPane.showMessageDialog(this, "Please enter all the fields");
+          JOptionPane.showMessageDialog(this, "Please enter all the fields","Error", JOptionPane.ERROR_MESSAGE);
           return;
         }
         
         if(!util.isNumeric(txtBloodPressure.getText()) || !util.isNumeric(txtPulse.getText())||
        !util.isNumeric(txtTemperature.getText())){
-          JOptionPane.showMessageDialog(this, "Please enter numeric value");
+           JOptionPane.showMessageDialog(this, "Please enter numeric value","Error", JOptionPane.ERROR_MESSAGE);
           return;
         }
         
@@ -150,11 +156,7 @@ public class AddEncounter extends javax.swing.JPanel {
         v.setPulse(pulse);
         v.setTemperature(temperature);
         Encounter e = new Encounter(v, LocalDateTime.now());
-        Patient p = sys.getPatientDirectory().getPatient(patientIdBox.getText());
-        if(p==null){
-          JOptionPane.showMessageDialog(this, "Patient Id does not exist");
-          return;
-        }
+
         EncounterHistory h = p.getHistory();
         h.addEncounter(e);
         JOptionPane.showMessageDialog(null, "Encounter Added Successfully In Patients History");
