@@ -31,17 +31,7 @@ public class AddPatient extends javax.swing.JPanel {
                 houseCombo.addItem("House:"+h.getHouseNumber()+",Community: "+com.getName());
             }
         }
-         DefaultTableModel patientTable = (DefaultTableModel) allPatientsTable.getModel();
-        patientTable.setRowCount(0);
-        Object row [] = new Object[5];
-        for(Patient patient: sys.getPatientDirectory().getList()){
-          row[0] = patient.getName();
-          row[1] = patient.getAge();
-          row[2] = patient.getHouse().getCommunity().getName();
-          row[3] = patient.getHouse().getHouseNumber();
-          row[4] = patient.getPatientId();
-          patientTable.addRow(row);
-    }
+        populateTable();
     }
 
     /**

@@ -126,6 +126,8 @@ public class AddEncounter extends javax.swing.JPanel {
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         // TODO add your handling code here:
         Validator util= new Validator();
+        
+        //validating fields before performing any action 
         if(!util.isNotNullAndEmpty(txtBloodPressure.getText()) || !util.isNotNullAndEmpty(txtPulse.getText())||
        !util.isNotNullAndEmpty(txtTemperature.getText())){
           JOptionPane.showMessageDialog(this, "Please enter all the fields");
