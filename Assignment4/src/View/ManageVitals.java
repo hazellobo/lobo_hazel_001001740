@@ -4,6 +4,7 @@
  */
 package View;
 
+import Model.SystemModel;
 import Model.VitalSign;
 import Model.VitalSignRecord;
 import javax.swing.JOptionPane;
@@ -21,7 +22,13 @@ public class ManageVitals extends javax.swing.JPanel {
     //Declaring variables
     private VitalSignRecord vsh;
     int maxBP, minBP;
+    SystemModel sys;
     
+     public ManageVitals(SystemModel sys){
+        initComponents();
+        this.sys = sys;
+        populateTable();
+     }
     //Initializing variables on constructor call
     public ManageVitals(int maxBP, int minBP,VitalSignRecord vsh) {
         initComponents();

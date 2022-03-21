@@ -44,6 +44,7 @@ public class StartMenu extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
+        btnCreate1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -120,6 +121,14 @@ public class StartMenu extends javax.swing.JFrame {
             }
         });
 
+        btnCreate1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnCreate1.setText("Modify Patient Vitals");
+        btnCreate1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreate1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout LeftPanelLayout = new javax.swing.GroupLayout(LeftPanel);
         LeftPanel.setLayout(LeftPanelLayout);
         LeftPanelLayout.setHorizontalGroup(
@@ -137,7 +146,10 @@ public class StartMenu extends javax.swing.JFrame {
                         .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(LeftPanelLayout.createSequentialGroup()
                         .addGap(101, 101, 101)
-                        .addComponent(jLabel1)))
+                        .addComponent(jLabel1))
+                    .addGroup(LeftPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnCreate1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         LeftPanelLayout.setVerticalGroup(
@@ -145,15 +157,17 @@ public class StartMenu extends javax.swing.JFrame {
             .addGroup(LeftPanelLayout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addComponent(jLabel1)
-                .addGap(50, 50, 50)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
+                .addGap(18, 18, 18)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52)
+                .addGap(18, 18, 18)
                 .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
+                .addGap(27, 27, 27)
+                .addComponent(btnCreate1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(75, Short.MAX_VALUE))
         );
 
         SplitPane.setLeftComponent(LeftPanel);
@@ -195,6 +209,12 @@ public class StartMenu extends javax.swing.JFrame {
         ManagePatients man = new ManagePatients(sys);
         SplitPane.setRightComponent(man);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void btnCreate1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreate1ActionPerformed
+        // TODO add your handling code here:
+        ManageVitals mv = new ManageVitals(sys);
+        SplitPane.setRightComponent(mv);
+    }//GEN-LAST:event_btnCreate1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -238,6 +258,7 @@ public class StartMenu extends javax.swing.JFrame {
     private javax.swing.JPanel RightPanel;
     private javax.swing.JSplitPane SplitPane;
     private javax.swing.JButton btnCreate;
+    private javax.swing.JButton btnCreate1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
